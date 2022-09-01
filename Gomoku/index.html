@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>五子棋对战</title>
+    <link rel="stylesheet" type="text/css" href="./index.css" />
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?1e6b54e22f8dbb95bb10234f0de47ea1";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+
+<body>
+    <div class="box">
+        <div class="topbar">
+            <div class="top-bt-box">
+                <div class="top-title">五子棋对战</div>
+                <div class="topbt">
+                    <button id='game-rst'>重新开始</button>
+                    <button id='start-ai'>开始, 电脑先手</button>
+                    <div>
+                        <span>玩家选择</span>
+                        <select id='user-select'>
+                            <option id="select-w" selected='selected' value='white'>白子</option>
+                            <option id="select-b" value='black'>黑子</option>
+                        </select>
+                    </div>
+                   
+                </div>
+            </div>
+            <div><b id='win-display'></b></div>
+            <div class="toptips">
+                <span>玩家<i id='tips-man' class="man-stone"></i></span>
+                <span>电脑<i id='tips-ai' class="ai-stone"></i></span> 
+            </div>
+        </div>
+        <div class='desk'>
+            <div id='border'>
+                <div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                </div>
+                <div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                </div>
+                <div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                </div>
+                <div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                </div>
+                <div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                </div>
+                <div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                </div>
+                <div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                </div>
+                <div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                </div>
+                <div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                </div>
+                <div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                </div>
+                <div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                </div>
+                <div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                </div>
+                <div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                </div>
+                <div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                </div>
+                <div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                    <div><i></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src='./index.js'></script>
+</body>
+
+</html>

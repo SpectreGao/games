@@ -1,0 +1,375 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <!--2020-12-22-->
+    <meta charset="utf-8">
+    <title>俄罗斯方块 Tetris</title>
+    <meta name="description" content="俄罗斯方块,网页版俄罗斯方块,网页俄罗斯方块，在线俄罗斯方块">
+    <meta name="description" content="tetris,tetris game">
+    <meta name="description" content="Tetris,Tetris Game">
+    <link rel="stylesheet" type="text/css" href="./index.css" />
+    <link rel="icon" href="./tetrislogo.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./tetrislogo.ico" type="image/x-icon">
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?1e6b54e22f8dbb95bb10234f0de47ea1";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+
+<body>
+
+    <!-- <div class="fullscreen-select">
+        <button onclick="fullscreenmode()" title="全屏模式">全屏</button><button onclick="exitscreenmode()" title="退出全屏">退出</button>
+    </div> -->
+
+    <!-- <div class="step-style"><a href="index.html" target="_blank">反馈</a></div> -->
+
+    <div class="game-border">
+
+        <div class="game-window">
+
+            <!--left--->
+            <div class="left-bar">
+
+                <div class="holdbox">
+                    <span>暂存</span>
+                    <canvas id='hold'></canvas>
+                </div>
+
+                <div class="left-bar-content">
+
+                    <div class="leftbox">
+                        <span class="label">得分</span>
+                        <div>
+                            <span id='panel-score'>0</span>
+                        </div>
+                    </div>
+
+                    <div class="leftbox">
+                        <span class="label">消行</span>
+                        <div>
+                            <span id='panel-line'>0</span>
+                        </div>
+                    </div>
+
+                    <div class="leftbox">
+                        <span class="label">关卡</span>
+                        <div>
+                            <span id='panel-level'>0</span>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="option-bar">
+                    <a href="javascript:void(0)" id="top10">排行榜</a>
+                    <a href="javascript:void(0)" id="setting">设置</a>
+                </div>
+
+            </div>
+
+            <!--center-->
+            <div id='canvas-box'>
+                <canvas id="bg-layer"></canvas>
+                <canvas id="cube-shadow-layer"></canvas>
+            </div>
+
+            <!--right-->
+            <div class="right-bar">
+
+                <div class="right-bar-top">
+                    <div class="right-label-top">
+                        <span>下一个</span>
+                    </div>
+                    <canvas id="s-canvas"></canvas>
+                </div>
+
+                <div class="bar-bottom-right">
+                    <div id="control">
+                        <span id="startPause" class="w-button">开始</span>
+                        <span id="reset" class="w-button">重来</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <canvas style="display: none; position: absolute;" id='saveCubeBox'></canvas>
+
+    <audio id='clear-sound' preload="auto" style="display: none">
+        <source src="./clear2.mp3" type="audio/mpeg" />
+    </audio>
+
+    <audio id='lock-sound' preload="auto" style="display: none">
+        <source src="./clear3.mp3" type="audio/mpeg" />
+    </audio>
+
+    <div class="w-border" id="u-gameOver">
+        <div class="w-head">
+            <span class="w-title">提示</span>
+            <span class="t-close w-close-x">×</span>
+        </div>
+        <div class="w-body">
+            <div class="game-over-content">
+                <span>游戏结束!</span>
+                <span>距离进入排行榜还差&nbsp;<b id="u-distancetop10"></b>&nbsp;分</span>
+            </div>
+        </div>
+    </div>
+
+    <!--游戏统计信息板-->
+
+    <div class="w-border" id="u-info">
+
+        <div class="w-head">
+            <span class="w-title">排行榜 · 前十名</span>
+            <span class="t-close w-close-x">×</span>
+        </div>
+
+        <div id="cont-table">
+            <table cellspacing="3" id="table-list">
+                <tr>
+                    <th>名次</th>
+                    <th>昵称</th>
+                    <th>得分</th>
+                    <th>关卡</th>
+                    <th>行数</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="w-border" id="u-enterTop10">
+
+        <div class="w-head">
+            <span class="w-title">恭喜</span>
+            <span class="t-close w-close-x">×</span>
+        </div>
+
+        <div class="w-body">
+
+            <div class="cont-top10">
+
+                <div class="cont-top10-title">入围排行榜</div>
+
+                <div class="cont-top10-inputname">输入你的大名，记录战绩！</div>
+
+                <input id="u-enterName" type="text" />
+
+                <div id="u-enterTop10info">
+                    <div>分数&nbsp&nbsp&nbsp<span id="u-score"></span></div>
+                    <div>关卡&nbsp&nbsp&nbsp<span id="u-level"></span></div>
+                    <div>行数&nbsp&nbsp&nbsp<span id="u-lines"></span></div>
+                </div>
+
+                <div class="w-save-s">
+                    <span class="w-button" id="u-enterNameBT">保存</span>
+                    <span class="w-button t-close">取消</span>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="w-border" id="u-gamepause">
+        <div class="w-head">
+            <span class="w-title">提示</span>
+            <span class="t-close w-close-x">×</span>
+        </div>
+        <div class="w-body">
+            <div class="cont-pause">
+                <span>游戏暂停</span>
+                <i></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-border" id="u-option">
+        <div class="w-head">
+            <span class="w-title">设置</span>
+            <span title="点击关闭，保存设置" id="opt-bt-yes" class="w-close-x">×</span>
+        </div>
+        <div class="w-body">
+
+            <div class="cont-opt">
+
+                <div>键位</div>
+
+                <div class="opt-item">
+                    <div class="opt-leftbox">
+                        <div class="opt-up">顺时旋转 <input key='rotate' class="opt-i" type="text" value="W"
+                                autocomplete="off" /></div>
+                        <div class="opt-other">
+                            <div><span>向左</span><input key='left' class="opt-i" type="text" value="A"
+                                    autocomplete="off" />
+                            </div>
+                            <div><span>向下</span><input key='down' class="opt-i" type="text" value="S"
+                                    autocomplete="off" />
+                            </div>
+                            <div><span>向右</span><input key='right' class="opt-i" type="text" value="D"
+                                    autocomplete="off" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="opt-rightbox">
+                        <div><span>立刻到达</span><input key='deep' class="opt-i" type="text" value="F"
+                                autocomplete="off" /> </div>
+                        <div>逆时旋转 <input key='rotate1' class="opt-i" type="text" value="Q" autocomplete="off" /></div>
+                        <div>180°旋转 <input key='rotate2' class="opt-i" type="text" value="R" autocomplete="off" /></div>
+                        <div>保留hold <input key='holdkey' class="opt-i" type="text" value="E" autocomplete="off" /></div>
+                        <div title="不要将键位设置为ESC，会和退出全屏键重叠">暂停[?] <input key='pause' class="opt-i" type="text" value='空格'
+                                autocomplete="off" /></div>
+                    </div>
+                </div>
+
+                <div>DAS && ARR · 数值越小，速度越快</div>
+
+                <div class="opt-item mb-use">
+                    <div><span>DAS 初次响应间隔</span><span style="color: skyblue">1 ~ 10</span><span
+                            class="makerange first-range"></span></div>
+                    <div><span>ARR 连续响应间隔</span><span style="color: skyblue">1 ~ 10</span><span
+                            class="makerange repe-range"></span></div>
+                    <div><span>锁定时间间隔</span><span style="color: skyblue">1 ~ 5</span><span
+                            class="makerange lock-range"></span></div>
+                </div>
+
+                <div>背景</div>
+
+                <div class="opt-item bg-select">
+                    <span>绿</span>
+                    <span>蓝</span>
+                    <span>黑</span>
+                    <span>紫</span>
+                </div>
+
+                <div>音效</div>
+
+                <div class="opt-item mb-sound">
+                    <div>
+                        <span>关闭音效</span><input id='off-sound' type="checkbox" />
+                    </div>
+                </div>
+
+                <div>重置</div>
+                <div class="opt-item mb-rst">
+                    <span id='rst-key'>重置按键</span>
+                    <span id="clearData">清除所有数据</span>
+                </div>
+
+                <div>关于</div>
+                <div class="opt-item about-me">
+                    <p>作者：
+                        <a href="https://gitee.com/zhangxiaoleiwk/tetris" target="_blank" style="color:#fff">
+                            <img src="https://gitee.com/assets/favicon.ico" alt="gitee" width="15px">zhangxiaoleiwk
+                        </a>
+                        <a href="https://github.com/zhangxiaoleiwk/" target="_blank" style="color:#fff">
+                            <img src="https://github.githubassets.com/pinned-octocat.svg" alt="gitee"
+                                width="15px">zhangxiaoleiwk
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-border" id="rst-game">
+        <div class="w-head">
+            <span class="w-title">提示</span>
+            <span class="t-close w-close-x">×</span>
+        </div>
+        <div class="w-body">
+            <div class="rst-game">
+                <span>游戏正在进行中，确定要重来？</span>
+                <div>
+                    <span id='rst-gaming' class="w-button">确定</span>
+                    <span class="t-close w-button">取消</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./index.js"></script>
+
+</body>
+
+</html>
