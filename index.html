@@ -1,32 +1,121 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<!doctype html>
+<html lang="zh-cmn-Hans">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <link rel="icon" href="https://spectregao.github.io/Spectre_logo_blue_min.svg">
+
+    <!-- MDUI CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
     <title>在线小游戏 - Spectre Gao</title>
+
+    <style>
+        body {
+            background: #f3f3f3;
+        }
+
+        .box {
+            max-width: 1280px;
+            margin: 50px auto;
+            display: flex;
+        }
+
+        .box>.mdui-card {
+            flex: 1;
+            margin: 20px;
+        }
+
+        .mdui-card-media img {
+            width: 220px;
+            height: 260px;
+            margin: 0 auto;
+        }
+
+        .mdui-color-blue {
+            color: #fff !important;
+        }
+    </style>
 </head>
 
 <body>
-    <ul>
-        <li>
-            <a href="./ChromeDino">
-                Chrome Dino
-            </a>
-        </li>
-        <li>
-            <a href="./Gomoku">
-                五子棋 Gomoku
-            </a>
-        </li>
-        <li>
-            <a href="./Tetris">
-                俄罗斯方块 Tetris
-            </a>
-        </li>
-    </ul>
+    <div class="box">
+
+        <div class="mdui-card mdui-ripple">
+            <div class="mdui-card-media">
+                <img src="./cover/Dino.webp" />
+                <div class="mdui-card-media-covered mdui-card-media-covered-gradient">
+                    <div class="mdui-card-primary">
+                        <div class="mdui-card-primary-title">谷歌小恐龙</div>
+                        <div class="mdui-card-primary-subtitle">Chrome Dino</div>
+                    </div>
+                </div>
+            </div>
+            <div class="mdui-card-actions">
+                <button class="mdui-btn mdui-ripple mdui-color-blue" onclick="Open('./ChromeDino')">
+                    <i class="mdui-icon material-icons">&#xe338;</i>
+                    开始游戏
+                </button>
+            </div>
+        </div>
+
+        <div class="mdui-card mdui-ripple">
+            <div class="mdui-card-media">
+                <img src="./cover/Gomoku.webp" />
+                <div class="mdui-card-media-covered mdui-card-media-covered-gradient">
+                    <div class="mdui-card-primary">
+                        <div class="mdui-card-primary-title">五子棋</div>
+                        <div class="mdui-card-primary-subtitle">Gomoku</div>
+                    </div>
+                </div>
+            </div>
+            <div class="mdui-card-actions">
+                <button class="mdui-btn mdui-ripple mdui-color-blue"
+                    onclick="Open('https://gitee.com/zhangxiaoleiwk/')">
+                    <i class="mdui-icon material-icons">&#xe338;</i>
+                    开始游戏
+                </button>
+                <button class="mdui-btn mdui-ripple" onclick="Open('./ChromeDino')">
+                    <i class="mdui-icon material-icons">&#xe88f;</i>
+                    gitee
+                </button>
+            </div>
+        </div>
+
+        <div class="mdui-card mdui-ripple">
+            <div class="mdui-card-media">
+                <img src="./cover/Tetris.webp" />
+                <div class="mdui-card-media-covered mdui-card-media-covered-gradient">
+                    <div class="mdui-card-primary">
+                        <div class="mdui-card-primary-title">俄罗斯方块</div>
+                        <div class="mdui-card-primary-subtitle">Tetris</div>
+                    </div>
+                </div>
+            </div>
+            <div class="mdui-card-actions">
+                <button class="mdui-btn mdui-ripple mdui-color-blue" onclick="Open('./Tetris')">
+                    <i class="mdui-icon material-icons">&#xe338;</i>
+                    开始游戏
+                </button>
+                <button class="mdui-btn mdui-ripple" onclick="Open('https://gitee.com/zhangxiaoleiwk/tetris')">
+                    <i class="mdui-icon material-icons">&#xe88f;</i>
+                    gitee
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- MDUI JavaScript -->
+    <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
+    <script>
+        function Open(url) {
+            window.open(url)
+        }
+    </script>
 </body>
 
 </html>
