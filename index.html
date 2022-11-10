@@ -20,13 +20,19 @@
 
         .box {
             max-width: 1280px;
-            margin: 50px auto;
+            margin: 25vh auto;
             display: flex;
         }
 
         .box>.mdui-card {
             flex: 1;
             margin: 20px;
+            transition: 0.3s;
+        }
+
+        .box>.mdui-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 15px rgb(0 0 0 / 30%);
         }
 
         .mdui-card-media img {
@@ -73,12 +79,11 @@
                 </div>
             </div>
             <div class="mdui-card-actions">
-                <button class="mdui-btn mdui-ripple mdui-color-blue"
-                    onclick="Open('https://gitee.com/zhangxiaoleiwk/')">
+                <button class="mdui-btn mdui-ripple mdui-color-blue" onclick="Open('./ChromeDino')">
                     <i class="mdui-icon material-icons">&#xe338;</i>
                     开始游戏
                 </button>
-                <button class="mdui-btn mdui-ripple" onclick="Open('./ChromeDino')">
+                <button class="mdui-btn mdui-ripple" onclick="Open('https://gitee.com/zhangxiaoleiwk/')">
                     <i class="mdui-icon material-icons">&#xe88f;</i>
                     gitee
                 </button>
@@ -113,7 +118,9 @@
     <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
     <script>
         function Open(url) {
-            window.open(url)
+            setTimeout(() => {
+                window.open(url)
+            }, 300);
         }
     </script>
 </body>
