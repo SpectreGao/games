@@ -15,7 +15,7 @@
 
     <style>
         body {
-            background: #f3f3f3;
+            background: #333;
         }
 
         .box {
@@ -28,6 +28,7 @@
             flex: 1;
             margin: 20px;
             transition: 0.3s;
+            background: #4c4c4c;
         }
 
         .box>.mdui-card:hover {
@@ -43,6 +44,10 @@
 
         .mdui-color-blue {
             color: #fff !important;
+        }
+
+        .mdui-card-primary {
+            text-shadow: 2px 2px 5px #333;
         }
     </style>
 </head>
@@ -79,7 +84,7 @@
                 </div>
             </div>
             <div class="mdui-card-actions">
-                <button class="mdui-btn mdui-ripple mdui-color-blue" onclick="Open('./ChromeDino')">
+                <button class="mdui-btn mdui-ripple mdui-color-blue" onclick="Open('./Gomoku')">
                     <i class="mdui-icon material-icons">&#xe338;</i>
                     开始游戏
                 </button>
